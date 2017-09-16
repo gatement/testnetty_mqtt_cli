@@ -16,7 +16,7 @@ public class MqttPingRespHandler extends SimpleChannelInboundHandler<MqttMessage
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, MqttMessage msg) throws Exception {
 		if (msg.fixedHeader().messageType() == MqttMessageType.PINGRESP) {
-			logger.info("MQTT PINGRESP received");
+			logger.debug("MQTT PINGRESP received");
 		} else {
 			logger.warn("Received unhandled mqtt message: ", msg.fixedHeader().messageType());
 		}

@@ -102,7 +102,7 @@ public class MqttClient implements DisposableBean, Runnable {
 				MqttPingReqMessage msg = new MqttPingReqMessage(
 						new MqttFixedHeader(MqttMessageType.PINGREQ, false, MqttQoS.AT_MOST_ONCE, false, 0));
 				channel.writeAndFlush(msg);
-				logger.info("MQTT PINGREQ sent");
+				logger.debug("MQTT PINGREQ sent");
 			}
 		};
 	}
