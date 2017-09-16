@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import io.netty.bootstrap.Bootstrap;
@@ -27,7 +28,7 @@ import lgh.handler.MqttChannelInitializer;
 import lgh.mqtt.MqttPingReqMessage;
 
 @Component
-public class MqttClient implements DisposableBean, Runnable {
+public class MqttClient implements DisposableBean, CommandLineRunner {
 	private final Logger logger = LoggerFactory.getLogger(MqttClient.class);
 
 	@Autowired
@@ -60,7 +61,7 @@ public class MqttClient implements DisposableBean, Runnable {
 	}
 
 	@Override
-	public void run() {
+	public void run(String... arg0) throws Exception {
 		group = new NioEventLoopGroup();
 		Bootstrap bootstrap = new Bootstrap();
 		bootstrap.group(group).channel(NioSocketChannel.class).handler(mqttChannelInitializer);
